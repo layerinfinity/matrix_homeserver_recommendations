@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 
 import 'package:matrix_homeserver_recommendations/matrix_homeserver_recommendations.dart';
-import 'package:matrix_homeserver_recommendations/src/parsers/joinmatrix_org_parser.dart';
 
 void main() {
   group('joinMatrix.org homeserver parser', () {

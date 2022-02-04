@@ -1,5 +1,4 @@
 import 'package:matrix_homeserver_recommendations/matrix_homeserver_recommendations.dart';
-import 'package:matrix_homeserver_recommendations/src/parsers/joinmatrix_org_parser.dart';
 
 Future<int> main() async {
   print('Loading homeservers from joinMatrix.org...');
