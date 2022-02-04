@@ -1,7 +1,18 @@
+import 'dart:async';
+
 import 'package:matrix_api_lite/matrix_api_lite.dart';
 
 import 'package:matrix_homeserver_recommendations/matrix_homeserver_recommendations.dart';
 import 'package:matrix_homeserver_recommendations/src/models/homeserver.dart';
+
+// callback to filter homeservers
+//
+// by the established [api], the [Homeserver] can be filtered even before
+// performing the connection test
+//
+// return [false] to remove the [Homeserver]
+// return [true] to keep the [Homeserver]
+typedef MatrixHomeserverFilter = FutureOr<bool> Function(MatrixApi api);
 
 /// represents a [Homeserver] response time benchmark
 class HomeserverBenchmarkResult extends Comparable {
@@ -26,11 +37,19 @@ class HomeserverBenchmarkResult extends Comparable {
   ///
   /// [homeserver]: the [Homeserver] to test against
   /// [timeout]: the maximum [Duration] the benchmark may take
+  /// [filter]: the [MatrixHomeserverFilter] function to filter the homeserver
+  /// by the given [MatrixApi]
   static Future<HomeserverBenchmarkResult> benchmarkHomeserver(
-      Homeserver homeserver,
-      {Duration timeout = const Duration(seconds: 30)}) async {
+    Homeserver homeserver, {
+    Duration timeout = const Duration(seconds: 30),
+    MatrixHomeserverFilter? filter,
+  }) async {
     try {
       final api = MatrixApi(homeserver: homeserver.baseUrl);
+
+      // potentially filter
+      await filter?.call(api);
+
       final startTime = DateTime.now();
       // performing the connection test with the given timeout
       await api.getVersions().timeout(timeout);

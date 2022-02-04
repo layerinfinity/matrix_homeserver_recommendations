@@ -15,7 +15,7 @@ code_analyze:
   dependencies: []
   script:
     - dart pub get
-    - dart format lib/ test/ test_driver/ --set-exit-if-changed
+    - dart format lib test example --set-exit-if-changed
     - dart analyze
     - dart run import_sorter:main --no-comments --exit-if-changed
 
