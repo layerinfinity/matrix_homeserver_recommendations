@@ -47,17 +47,14 @@ class JoinmatrixOrgParser extends HomeserverListProvider {
           homeservers.add(
             Homeserver(
               baseUrl: parseInvalidMarkdownLink(element[0])!,
-              jurisdiction: element[1].trim().isNotEmpty != null
-                  ? element[1].trim()
-                  : null,
+              jurisdiction:
+                  element[1].trim().isNotEmpty ? element[1].trim() : null,
               rules: parseMarkdownLink(element[2]),
               privacyPolicy: parseMarkdownLink(element[3]),
-              antiFeatures: element[4].trim().isNotEmpty != null
-                  ? element[4].trim()
-                  : null,
-              description: element[5].trim().isNotEmpty != null
-                  ? element[5].trim()
-                  : null,
+              antiFeatures:
+                  element[4].trim().isNotEmpty ? element[4].trim() : null,
+              description:
+                  element[5].trim().isNotEmpty ? element[5].trim() : null,
               registration: parseMarkdownLink(element[6]),
               registrationAllowed: true,
               homeserverSoftware:
