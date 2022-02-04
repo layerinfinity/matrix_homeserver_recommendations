@@ -46,15 +46,22 @@ class JoinmatrixOrgParser extends HomeserverListProvider {
         try {
           homeservers.add(
             Homeserver(
-              baseUrl: parseMarkdownLink(element[0])!,
-              jurisdiction: element[1].trim(),
+              baseUrl: parseInvalidMarkdownLink(element[0])!,
+              jurisdiction: element[1].trim().isNotEmpty != null
+                  ? element[1].trim()
+                  : null,
               rules: parseMarkdownLink(element[2]),
               privacyPolicy: parseMarkdownLink(element[3]),
-              antiFeatures: element[4].trim(),
-              description: element[5].trim(),
+              antiFeatures: element[4].trim().isNotEmpty != null
+                  ? element[4].trim()
+                  : null,
+              description: element[5].trim().isNotEmpty != null
+                  ? element[5].trim()
+                  : null,
               registration: parseMarkdownLink(element[6]),
               registrationAllowed: true,
-              homeserverSoftware: element[7],
+              homeserverSoftware:
+                  element[7].trim().isNotEmpty ? element[7].trim() : null,
             ),
           );
         } catch (e, s) {
@@ -68,10 +75,20 @@ class JoinmatrixOrgParser extends HomeserverListProvider {
     }
   }
 
+  /// parses a markdown link to a [Uri]
   Uri? parseMarkdownLink(String markdown) {
     final match = RegExp(r'\[(.*)\]\((.+)\)').firstMatch(markdown);
     if (match == null) return null;
     return Uri.parse(match.group(2)!);
+  }
+
+  /// parses an inverted markdown link
+  ///
+  /// for some reason, the server list uses the server URL as display link
+  Uri? parseInvalidMarkdownLink(String markdown) {
+    final match = RegExp(r'\[(.*)\]\((.+)\)').firstMatch(markdown);
+    if (match == null) return null;
+    return Uri.parse('https://' + match.group(1)!);
   }
 
   @override

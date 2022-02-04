@@ -1,3 +1,7 @@
+## 0.1.2
+
+- Fix error in joinMatrix.org parser
+
 ## 0.1.1
 
 - Implement MatrixApi filter
