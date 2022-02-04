@@ -22,22 +22,35 @@ abstract class HomeserverListProvider {
   /// [homeservers]: all [Homeserver] to test
   /// [timeout]: the maximum [Duration] the benchmark may take
   /// [includeFailed]: whether to include results completed with error
+  /// [filter]: the [MatrixHomeserverFilter] function to filter the homeserver
+  /// by the given API
   static Future<List<HomeserverBenchmarkResult>> benchmarkHomeserver(
-          List<Homeserver> homeservers,
-          {Duration timeout = const Duration(seconds: 30),
-          bool includeFailed = false}) async =>
+    List<Homeserver> homeservers, {
+    Duration timeout = const Duration(seconds: 30),
+    bool includeFailed = false,
+    MatrixHomeserverFilter? filter,
+  }) async =>
       Future.wait(homeservers
-              .map((e) => HomeserverBenchmarkResult.benchmarkHomeserver(e,
-                  timeout: timeout))
+              .map(
+                (e) => HomeserverBenchmarkResult.benchmarkHomeserver(
+                  e,
+                  timeout: timeout,
+                  filter: filter,
+                ),
+              )
               .toList())
-          .then((completedBenchmarks) {
-        if (!includeFailed) {
-          completedBenchmarks = completedBenchmarks
-              .where((benchmark) =>
-                  benchmark.responseTime != null && benchmark.error == null)
-              .toList();
-        }
-        completedBenchmarks.sort();
-        return completedBenchmarks;
-      });
+          .then(
+        (completedBenchmarks) {
+          if (!includeFailed) {
+            completedBenchmarks = completedBenchmarks
+                .where(
+                  (benchmark) =>
+                      benchmark.responseTime != null && benchmark.error == null,
+                )
+                .toList();
+          }
+          completedBenchmarks.sort();
+          return completedBenchmarks;
+        },
+      );
 }
