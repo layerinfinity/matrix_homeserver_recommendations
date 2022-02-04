@@ -1,6 +1,5 @@
 stages:
   - coverage
-  - builddocs
   - deploy
   - publish
 
@@ -19,6 +18,17 @@ code_analyze:
     - dart format lib/ test/ test_driver/ --set-exit-if-changed
     - dart analyze
     - dart run import_sorter:main --no-comments --exit-if-changed
+
+
+dart_test:
+  stage: coverage
+  image: google/dart
+  dependencies: [
+    code_analyze
+  ]
+  script:
+    - dart pub get
+    - dart test
 
 code_quality:
   stage: coverage

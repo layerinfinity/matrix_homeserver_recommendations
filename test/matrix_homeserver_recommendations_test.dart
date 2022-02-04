@@ -1,3 +1,4 @@
+import 'package:matrix_homeserver_recommendations/matrix_homeserver_recommendations.dart';
 import 'package:test/test.dart';
 
 import 'package:matrix_homeserver_recommendations/src/parsers/joinmatrix_org_parser.dart';
@@ -10,6 +11,9 @@ void main() {
       final homeservers = await joinMatrixParser.fetchHomeservers();
 
       expect(homeservers.isNotEmpty, isTrue);
+
+      final benchmark = await HomeserverListProvider.benchmarkHomeserver(homeservers,timeout: Duration(seconds: 10));
+      expect(benchmark.isNotEmpty, isTrue);
     });
   });
 }
