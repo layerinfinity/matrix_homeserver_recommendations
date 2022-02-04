@@ -55,7 +55,7 @@ class HomeserverBenchmarkResult extends Comparable {
       await api.getVersions().timeout(timeout);
       final endTime = DateTime.now();
 
-      final difference = startTime.difference(endTime);
+      final difference = endTime.difference(startTime);
 
       return HomeserverBenchmarkResult(
           homeserver: homeserver, responseTime: difference);
@@ -71,7 +71,7 @@ class HomeserverBenchmarkResult extends Comparable {
         responseTime == other.responseTime) return 0;
     if (responseTime == null) return 1;
     if (other.responseTime == null) return -1;
-    return other.responseTime!.compareTo(responseTime!);
+    return responseTime!.compareTo(other.responseTime!);
   }
 }
 

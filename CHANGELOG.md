@@ -1,3 +1,7 @@
+## 0.1.4
+
+- Fix negative durations
+
 ## 0.1.3
 
 - Bugfix of empty strings
