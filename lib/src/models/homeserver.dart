@@ -3,6 +3,9 @@ class Homeserver {
   /// the server's API base URL
   final Uri baseUrl;
 
+  /// a link to get information about the service at
+  final Uri? aboutUrl;
+
   /// a description for the homeserver
   final String? description;
 
@@ -29,6 +32,7 @@ class Homeserver {
 
   const Homeserver({
     required this.baseUrl,
+    this.aboutUrl,
     this.description,
     this.homeserverSoftware,
     this.rules,
@@ -41,5 +45,5 @@ class Homeserver {
 
   @override
   String toString() =>
-      "Homeserver( $baseUrl, $description, $homeserverSoftware, $rules, $privacyPolicy, $jurisdiction, $antiFeatures, $registrationAllowed, $registration )";
+      "Homeserver( $baseUrl, $aboutUrl, $description, $homeserverSoftware, $rules, $privacyPolicy, $jurisdiction, $antiFeatures, $registrationAllowed, $registration )";
 }

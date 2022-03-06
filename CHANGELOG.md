@@ -1,3 +1,8 @@
+## 0.2.0
+
+- Update joinMatrix.org parser
+- Remove dependencies
+
 ## 0.1.4
 
 - Fix negative durations
