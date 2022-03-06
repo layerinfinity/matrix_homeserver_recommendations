@@ -66,7 +66,7 @@ pub-dev:
         exit 1
       fi
 
-      cp "${PUB_DEV_CREDENTIALS} ~/.pub-cache/credentials.json
+      cp "${PUB_DEV_CREDENTIALS}" ~/.pub-cache/credentials.json
       
     - dart pub get
     - dart pub publish --force
