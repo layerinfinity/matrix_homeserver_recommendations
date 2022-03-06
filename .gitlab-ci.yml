@@ -66,6 +66,7 @@ pub-dev:
         exit 1
       fi
 
+      mkdir -p /root/.pub-cache
       cp "${PUB_DEV_CREDENTIALS}" ~/.pub-cache/credentials.json
       
     - dart pub get
