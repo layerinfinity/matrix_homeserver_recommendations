@@ -1,3 +1,7 @@
+## 0.2.1
+
+- Update dependency constraints of `matrix_api_lite`
+
 ## 0.2.0
 
 - Update joinMatrix.org parser

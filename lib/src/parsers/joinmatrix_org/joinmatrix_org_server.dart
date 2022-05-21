@@ -5,7 +5,7 @@ import '../../models/homeserver.dart';
 class JoinMatrixOrgServer extends Homeserver {
   JoinMatrixOrgServer.fromJson(Map<String, dynamic> json)
       : super(
-          baseUrl: Uri.parse('https://' + json['domain']),
+          baseUrl: Uri.parse('https://${json['domain']}'),
           aboutUrl: Uri.tryParse(json['info']),
           jurisdiction: json['jurisdiction'],
           rules: Uri.tryParse(json['tos']),
