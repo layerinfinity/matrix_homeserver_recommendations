@@ -1,8 +1,8 @@
 name: matrix_homeserver_recommendations
 description: Find, filter and benchmark public Matrix homeservers and check their capabilities
 version: 0.2.0
-homepage: https://gitlab.com/TheOneWithTheBraid/matrix_homeserver_recommendations.git
-repository: https://gitlab.com/TheOneWithTheBraid/matrix_homeserver_recommendations.git
+homepage: https://gitlab.com/TheOneWithTheBraid/matrix_homeserver_recommendations
+repository: https://gitlab.com/TheOneWithTheBraid/matrix_homeserver_recommendations
 
 environment:
   sdk: '>=2.15.0 <3.0.0'
