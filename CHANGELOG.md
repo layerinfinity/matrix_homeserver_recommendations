@@ -1,3 +1,9 @@
+## 0.3.0
+
+- Add locale-based homeserver recommendations
+- Remove unwanted log outputs
+- Improve code style
+
 ## 0.2.1
 
 - Update dependency constraints of `matrix_api_lite`
