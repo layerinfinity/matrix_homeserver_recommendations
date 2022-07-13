@@ -20,6 +20,12 @@ Future<int> main() async {
   for (var benchmark in result) {
     print(benchmark);
   }
+
+  print('Proposing a homeserver based on country code...');
+  var localeHomeserverParser = LocalHomeserverParser('ua');
+  final localHomeserver = localeHomeserverParser.fetchHomeservers().first;
+  print(localHomeserver);
+
   print('Example completed.');
   return 0;
 }

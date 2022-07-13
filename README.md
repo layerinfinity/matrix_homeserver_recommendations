@@ -5,14 +5,16 @@ Find, filter and benchmark public Matrix homeservers
 ## Features
 
 - Dart native
-- only three dependencies
+- only two dependencies (`http`, `matrix_api_lite`)
 - extensible
-- predefined providers
+- two predefined providers
 - easily compare benchmarks
 
 ## Usage
 
 ```dart
+import 'package:matrix_homeserver_recommendations/matrix_homeserver_recommendations.dart';
+
 Future<int> main() async {
   print('Loading homeservers from joinMatrix.org...');
   var joinMatrixParser = JoinmatrixOrgParser();
@@ -33,6 +35,12 @@ Future<int> main() async {
   for (var benchmark in result) {
     print(benchmark);
   }
+  
+  print('Proposing a homeserver based on country code...');
+  var localeHomeserverParser = LocalHomeserverParser('ua');
+  final localHomeserver = localeHomeserverParser.fetchHomeservers().first;
+  print(localHomeserver);
+
   print('Example completed.');
   return 0;
 }

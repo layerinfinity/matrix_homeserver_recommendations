@@ -4,6 +4,8 @@ import 'package:matrix_homeserver_recommendations/matrix_homeserver_recommendati
 
 /// implements to fetch a [List] of [Homeserver] and provides metadata
 abstract class HomeserverListProvider {
+  const HomeserverListProvider();
+
   /// an Uri to report errors to
   ///
   /// Might be an HTTPS link, Email or Matrix-ID e.g.
