@@ -15,7 +15,7 @@ import 'package:matrix_homeserver_recommendations/src/models/homeserver.dart';
 typedef MatrixHomeserverFilter = FutureOr<bool> Function(MatrixApi api);
 
 /// represents a [Homeserver] response time benchmark
-class HomeserverBenchmarkResult extends Comparable {
+class HomeserverBenchmarkResult implements Comparable {
   /// the [Homeserver] to be tested
   final Homeserver homeserver;
 
